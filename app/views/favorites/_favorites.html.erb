@@ -1,0 +1,16 @@
+<% if users.any? %>
+  <ul class="media-list">
+    <% microposts.each do |micropost| %>
+    <% user = micropost.user %>
+      <li class="media">
+        <div class="media-left">
+          <img class="media-object img-rounded" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+        </div>
+        <div class="media-body">
+          
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate users %>
+<% end %>

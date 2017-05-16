@@ -3,7 +3,7 @@
     <% user = micropost.user %>
     <li class="media">
       <div class="media-left">
-        <img class="media-object img-rounded" src="<%= gravatar_url(current_user, options = { size: 50 }) %>" alt="">
+        <img class="media-object img-rounded" src="<%= gravatar_url(user, options = { size: 50 }) %>" alt="">
       </div>
       <div class="media-body">
         <div>
@@ -13,6 +13,11 @@
           <p><%= micropost.content %></p>
         </div>
         <div>
+          <% if micropost.favorite?(current_user) %>
+            <%= link_to "UnFavorite", favorites_path(micropost_id: micropost.id), method: :delete, class: 'btn btn-warning btn-xs' %>
+          <% else %>
+            <%= link_to "Favorite", favorites_path(micropost_id: micropost.id), method: :post, class: 'btn btn-info btn-xs' %>
+          <% end %>
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
           <% end %>
