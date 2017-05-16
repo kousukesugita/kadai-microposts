@@ -56,3 +56,7 @@ gem 'kaminari'
 
 gem 'pry-rails'
 gem 'pry-byebug'
+
+group :production do
+  gem 'pg'
+end
